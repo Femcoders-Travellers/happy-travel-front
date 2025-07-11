@@ -1,0 +1,30 @@
+.container {
+    padding: 25px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.title {
+    color: var(--blue-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.createIcon {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.createIcon:hover {
+    transform: scale(1.1);
+}
+
+.loading {
+    margin: 20px;
+    color: var(--blue-color);
+}

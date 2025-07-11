@@ -1,0 +1,30 @@
+.ctUser {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    width: 260px;
+    height: 120px;
+    border-radius: 20px;
+    background-color: var(--yellow-color);
+    color: var(--blue-color);
+    padding: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ctTxt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.ctTxt h6 {
+    font-size: var(--font-size-s);
+}
+
+.ctTxt p {
+    font-size: var(--font-size-xs);
+    margin-top: 5px;
+}

@@ -16,18 +16,18 @@ axios.interceptors.request.use(function(config){
 export const TripsService = () => {
   const urlGetAll = '/destinations';
   const getTrips = async () => {
-    const res = await axios.get(urlGetAll);
-    return res;
+    const response = await axios.get(urlGetAll);
+    return response;
   };
 
   const getTripsOrderByAuthUser = async () => {
-    const res = await axios.get(`/destinations/user`);
-    return res;
+    const response = await axios.get(`/destinations/user`);
+    return response;
   };
 
   const getTripById = async (id) => {
-    const res = await axios.get(`/destinations/${id}`);
-    return res;
+    const response = await axios.get(`/destinations/${id}`);
+    return response;
   };
 
   return {

@@ -10,13 +10,16 @@ function Page() {
   const [tripsAuth, setTripsAuth] = useState();
   const api = TripsService();
 
-  useEffect(() => {
-    api.getTripsOrderByAuthUser().then(res => {
-      setTripsAuth(res.data.destinations)
-    }).catch(error => {
-      console.log(error);
-    })
-  }, [])
+    useEffect(() => {
+      const userId = JSON.parse(localStorage.getItem('authUser'))?.id;
+      if (userId) {
+        api.getTripsOrderByAuthUser(userId).then(res => {
+          setTripsAuth(res.data);
+        }).catch(error => {
+          console.error('Error al cargar destinos del usuario:', error);
+        });
+      }
+    }, [])
 
   return (
     <div className={styles.main}>

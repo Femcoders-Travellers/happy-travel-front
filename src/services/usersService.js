@@ -19,7 +19,30 @@ export const UsersService = () => {
         return response;
     };
 
+    const createUser = async (userData) => {
+        const response = await axios.post('/users/create', userData);
+        return response.data;
+    };
+    const getUserById = async (id) => {
+        const response = await axios.get(`/users/id/${id}`);
+        return response.data;
+    };
+
+    const updateUser = async (id, userData) => {
+        const response = await axios.put(`/users/update/${id}`, userData);
+        return response.data;
+    };
+
+    const deleteUser = async (id) => {
+        const response = await axios.delete(`/users/delete/${id}`);
+        return response.data;
+    };
+
     return {
-        getUsers
+        getUsers,
+        createUser,
+        getUserById,
+        updateUser,
+        deleteUser
     };
 };

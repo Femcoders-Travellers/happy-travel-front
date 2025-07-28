@@ -35,7 +35,7 @@
     font-size: 1rem;
     font-weight: bold;
 }
-.userform {
+.destinationform {
     display: flex;
     flex-direction: column;
     max-width: 400px;

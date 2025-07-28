@@ -20,8 +20,8 @@ export const TripsService = () => {
     return response;
   };
 
-  const getTripsOrderByAuthUser = async () => {
-    const response = await axios.get(`/destinations/user`);
+  const getTripsOrderByAuthUser = async (userId) => {
+    const response = await axios.get(`/destinations/user/${userId}`);
     return response;
   };
 
@@ -30,9 +30,16 @@ export const TripsService = () => {
     return response;
   };
 
+    const createDestination = async (destinationData) => {
+      const response = await axios.post('/destinations', destinationData);
+      return response;
+    };
+
+
   return {
     getTrips,
     getTripsOrderByAuthUser,
-    getTripById
+    getTripById,
+    createDestination
   }
 }

@@ -36,7 +36,7 @@ export default function AdminUsersPage() {
             <main className={styles.container}>
                 <div className={styles.header}>
                     <h2 className={styles.title}>Gestión de Usuarios</h2>
-                    <Link href='/create'>
+                    <Link href='/users/create'>
                         <Image
                             src={create}
                             width={40}

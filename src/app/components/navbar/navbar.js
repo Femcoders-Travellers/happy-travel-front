@@ -17,12 +17,14 @@ function Navbar() {
 
   return (
     <header className={styles.ctHeader}>
+    <Link href='/'>
       <Image
         src={logo}
         width={165}
         height={78}
         alt='happy travel logo'
       />
+      </Link>
       <nav className={styles.ctNav}>
         <Link href={'/'}>
           <Image
@@ -43,7 +45,7 @@ function Navbar() {
                   alt='mis destinos'
                 />
               </Link>
-              <Link href='/create'>
+              <Link href='/destinations'>
                 <Image
                   src={create}
                   width={40}

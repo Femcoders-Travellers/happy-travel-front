@@ -24,8 +24,23 @@ export const AuthService = () => {
   
   const postLogin = async (data) => {
     const response = await axios.post(urlLogin, data);
-    return response
-  }; 
+    const { token } = response.data;
+
+      localStorage.setItem('authToken', token);
+
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const username = payload.sub;
+      const id = payload.id;
+
+        const authUser = {};
+        if (username) authUser.username = username;
+        if (id) authUser.id = id;
+
+        if (Object.keys(authUser).length > 0) {
+          localStorage.setItem('authUser', JSON.stringify(authUser));
+        }
+        return response
+  };
 
   return {
     postRegister,

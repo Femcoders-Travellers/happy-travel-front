@@ -47,3 +47,7 @@
 .ctTxt p {
     font-size: var(--font-size-xs);
 }
+.deleteButton {
+    background: transparent;
+    border: none;
+}

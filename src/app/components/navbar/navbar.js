@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import logo from '../../../../public/Logo.svg';
 import home from '../../../../public/Home-icon.svg';
@@ -14,6 +15,16 @@ import { useAuthContext } from '@/context/authContext';
 function Navbar() {
 
   const { isAuthenticated, role } = useAuthContext();
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+      if (typeof window !== 'undefined') {
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+          setUsername(storedUsername);
+        }
+      }
+    }, []);
 
   return (
     <header className={styles.ctHeader}>
@@ -61,6 +72,18 @@ function Navbar() {
                       width={40}
                       height={40}
                       alt='admin panel'
+                    />
+                  </Link>
+                )
+              }
+              {
+                isAuthenticated && role !== "[ROLE_ADMIN]" && (
+                    <Link href={`/users/username/${username}`}>
+                    <Image
+                      src={avatar}
+                      width={40}
+                      height={40}
+                      alt='mi perfil'
                     />
                   </Link>
                 )

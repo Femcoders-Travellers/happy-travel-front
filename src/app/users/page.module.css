@@ -41,6 +41,9 @@
     max-width: 400px;
     gap: 1rem;
 }
+.info {
+    padding-bottom: 15px;
+}
 .createIcon {
     cursor: pointer;
     transition: transform 0.2s ease;

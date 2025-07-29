@@ -30,16 +30,28 @@ export const TripsService = () => {
     return response;
   };
 
-    const createDestination = async (destinationData) => {
-      const response = await axios.post('/destinations', destinationData);
-      return response;
-    };
+  const createDestination = async (destinationData) => {
+    const response = await axios.post('/destinations', destinationData);
+    return response;
+  };
+
+  const updateDestination = async (id, destinationData) => {
+    const response = await axios.put(`/destinations/${id}`, destinationData);
+    return response;
+  };
+
+  const deleteDestinationById = async (id) => {
+    const response = await axios.delete(`/destinations/${id}`);
+    return response;
+  };
 
 
   return {
     getTrips,
     getTripsOrderByAuthUser,
     getTripById,
-    createDestination
+    createDestination,
+    updateDestination,
+    deleteDestinationById
   }
 }

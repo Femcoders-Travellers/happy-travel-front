@@ -28,6 +28,11 @@ export const UsersService = () => {
         return response.data;
     };
 
+    const getUserByUsername = async (username) => {
+        const response = await axios.get(`/users/username/${username}`);
+        return response.data;
+    };
+
     const updateUser = async (id, userData) => {
         const response = await axios.put(`/users/update/${id}`, userData);
         return response.data;
@@ -42,6 +47,7 @@ export const UsersService = () => {
         getUsers,
         createUser,
         getUserById,
+        getUserByUsername,
         updateUser,
         deleteUser
     };

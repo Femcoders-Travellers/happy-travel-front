@@ -4,22 +4,39 @@ import Image from 'next/image';
 import Link from 'next/link';
 import edit from '../../../../public/Edit-icon.svg';
 import del from '../../../../public/Delete-icon.svg';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { TripsService } from '@/services/tripsService'; // ✅
 
 function Trip({ trip }) {
-
-  const { country, city, description, image, user: tripUser } = trip;
+  const { country, city, description, image, username: tripUsername } = trip;
   const { isAuthenticated, username } = useAuthContext();
   const pathname = usePathname();
-  const isOwner = isAuthenticated && username?.toLowerCase() === tripUser?.username?.toLowerCase();
-  const showEditDelete = isOwner && pathname == '/auth';
+  const router = useRouter();
+
+  const isOwner = isAuthenticated && username?.toLowerCase() === tripUsername?.toLowerCase();
+  const showEditDelete = isOwner && pathname === '/auth';
+
+  const { deleteDestinationById } = TripsService();
+
+  const handleDelete = async () => {
+    try {
+      const response = await deleteDestinationById(trip.id);
+      if (response.status === 200) {
+        window.location.reload();
+      } else {
+        console.error("Error al borrar destino:", response.data);
+      }
+    } catch (error) {
+      console.error("Error en la petición de borrado:", error);
+    }
+  };
 
   return (
     <div className={styles.ctTrip}>
       <Link href={`/destinations/${trip.id}`}>
         <div className={styles.ctImg}>
           <Image
-            src={`${image}`}
+            src={image}
             height={300}
             width={300}
             alt={country}
@@ -33,30 +50,19 @@ function Trip({ trip }) {
           <h6>{country}</h6>
           <p>{city}</p>
         </div>
-        {
-          isOwner && showEditDelete &&
+        {isOwner && showEditDelete && (
           <div>
-            <Link href={`/update/${trip.id}`}>
-              <Image
-                src={edit}
-                height={40}
-                width={40}
-                alt='edit destination'
-              />
+            <Link href={`destinations/update/${trip.id}`}>
+              <Image src={edit} height={40} width={40} alt="edit destination" />
             </Link>
-            <Link href={`/delete/${trip.id}`}>
-              <Image
-                src={del}
-                height={40}
-                width={40}
-                alt='delete destination'
-              />
-            </Link>
+            <button onClick={handleDelete} className={styles.deleteButton}>
+              <Image src={del} height={40} width={40} alt="delete destination" />
+            </button>
           </div>
-        }
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-export default Trip
+export default Trip;

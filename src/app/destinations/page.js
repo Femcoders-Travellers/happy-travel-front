@@ -15,7 +15,6 @@ export default function CreateDestinationPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Métodos disponibles en TripsService:", api);
         try {
             await api.createDestination({ city, country, description, image });
             router.push('/');
